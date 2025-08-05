@@ -9,7 +9,7 @@ import (
 
 	"github.com/stretchr/testify/mock"
 
-	"github.com/stackus/es"
+	"github.com/rezaAmiri123/es"
 )
 
 func TestEventRepository_Load(t *testing.T) {

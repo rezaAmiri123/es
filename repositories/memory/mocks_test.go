@@ -5,7 +5,7 @@ import (
 
 	"github.com/stretchr/testify/mock"
 
-	"github.com/stackus/es"
+	"github.com/rezaAmiri123/es"
 )
 
 type hookMock[K comparable] struct {

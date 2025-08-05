@@ -3,7 +3,7 @@ package memory
 import (
 	"context"
 
-	"github.com/stackus/es"
+	"github.com/rezaAmiri123/es"
 )
 
 type eventRepository[K comparable] struct {
