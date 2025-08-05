@@ -211,9 +211,6 @@ github.com/sirupsen/logrus
 # github.com/stackus/envelope v0.3.0
 ## explicit; go 1.23
 github.com/stackus/envelope
-# github.com/stackus/es v0.3.1
-## explicit; go 1.23
-github.com/stackus/es
 # github.com/stretchr/objx v0.5.2
 ## explicit; go 1.20
 github.com/stretchr/objx

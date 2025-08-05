@@ -1,6 +1,0 @@
-# IDE files
-.idea/
-.vscode/
-
-# Go workspace
-go.work*
