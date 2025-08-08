@@ -6,20 +6,21 @@ import (
 	"github.com/rezaAmiri123/es"
 )
 
-var _ es.Aggregate[uuid.UUID] = (*Order)(nil)
+var _ es.AggregateRoot[uuid.UUID] = (*Order)(nil)
 var _ es.SnapshotAggregate[uuid.UUID] = (*Order)(nil)
 
 type Order struct {
-	es.AggregateRoot[uuid.UUID]
+	es.Aggregate[uuid.UUID]
 	CustomerID      uuid.UUID
 	Items           map[uuid.UUID]*Item
 	ShippingAddress ShippingAddress
 }
 
-func NewOrder() *Order {
+func NewOrder(id uuid.UUID) *Order {
+	oid := OrderID(id)
 	order := &Order{
-		AggregateRoot: es.NewAggregateRoot(&OrderID{}),
-		Items:         make(map[uuid.UUID]*Item),
+		Aggregate: es.NewAggregate(&oid),
+		Items:     make(map[uuid.UUID]*Item),
 	}
 
 	return order
@@ -28,7 +29,7 @@ func NewOrder() *Order {
 // --- Domain methods ---
 
 func CreateOrder(customerID uuid.UUID) (*Order, error) {
-	order := NewOrder()
+	order := NewOrder(uuid.Nil)
 
 	return order, order.TrackChange(order, &OrderCreated{
 		CustomerID: customerID,
@@ -85,7 +86,7 @@ func (o *Order) AggregateType() string {
 	return "orders.Order"
 }
 
-func (o *Order) ApplyChange(event any) error {
+func (o *Order) ApplyChange(event es.EventPayload) error {
 	switch e := event.(type) {
 	case *OrderCreated:
 		o.CustomerID = e.CustomerID
@@ -121,7 +122,7 @@ func (o *Order) ApplyChange(event any) error {
 	return nil
 }
 
-func (o *Order) CreateSnapshot() any {
+func (o *Order) CreateSnapshot() es.SnapshotPayload {
 	items := make([]Item, 0, len(o.Items))
 	for _, item := range o.Items {
 		items = append(items, *item)
@@ -133,7 +134,7 @@ func (o *Order) CreateSnapshot() any {
 	}
 }
 
-func (o *Order) ApplySnapshot(snapshot any) error {
+func (o *Order) ApplySnapshot(snapshot es.SnapshotPayload) error {
 	switch s := snapshot.(type) {
 	case *OrderSnapshot:
 		o.CustomerID = s.CustomerID
