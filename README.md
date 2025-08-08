@@ -1,8 +1,8 @@
 
 # es &mdash; Event Sourcing in Go
 
-[![Go Reference](https://pkg.go.dev/badge/github.com/rezaAmiri123/es.svg)](https://pkg.go.dev/github.com/rezaAmiri123/es)
-[![Go Report Card](https://goreportcard.com/badge/github.com/rezaAmiri123/es)](https://goreportcard.com/report/github.com/rezaAmiri123/es)
+[![Go Reference](https://pkg.go.dev/badge/github.com/stackus/es.svg)](https://pkg.go.dev/github.com/stackus/es)
+[![Go Report Card](https://goreportcard.com/badge/github.com/stackus/es)](https://goreportcard.com/report/github.com/stackus/es)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
 Event Sourcing library for Go, designed for building scalable, event-driven applications with **CQRS** and **DDD** principles.
@@ -22,7 +22,7 @@ Event Sourcing library for Go, designed for building scalable, event-driven appl
 ### Installation
 
 ```sh
-go get github.com/rezaAmiri123/es
+go get github.com/stackus/es
 ```
 
 You will need to also install the required [envelope](https://github.com/stackus/envelope) package:
@@ -281,4 +281,4 @@ This project is licensed under the MIT License—see the [LICENSE](LICENSE) file
 
 ## 🤝 Contributing
 
-Contributions, issues, and feature requests are welcome! Feel free to check the [issues page](https://github.com/rezaAmiri123/es/issues).
+Contributions, issues, and feature requests are welcome! Feel free to check the [issues page](https://github.com/stackus/es/issues).
