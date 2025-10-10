@@ -26,7 +26,8 @@ jobs:
           go mod tidy
           go mod download
           go mod vendor
-       
+          wget -c https://go.dev/dl/go1.25.2.linux-amd64.tar.gz
+          
           git config --global user.name "action-user"
           git config --global user.email "action-user@example.com"
           git add .
